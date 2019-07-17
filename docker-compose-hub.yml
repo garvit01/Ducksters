@@ -1,0 +1,39 @@
+--- 
+services: 
+  moviecruiserfrontend: 
+    container_name: moviecruiserfrontend
+    image: "shubhendu15/moviecruiser:moviecruiserfrontend"
+    network_mode: host
+    ports: 
+      - "4200:4200"
+  mysql: 
+    container_name: mysql-docker
+    environment: 
+      MYSQL_DATABASE: moviedb
+      MYSQL_PASSWORD: root123
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_USER: app_root
+    image: "mysql:5.5"
+    network_mode: host
+    ports: 
+      - "3306:33060"
+  movieservice: 
+    container_name: movieservice
+    depends_on: 
+      - mysql
+    image: "shubhendu15/moviecruiser:movieservice"
+    network_mode: host
+    ports: 
+      - "8080:8080"
+    restart: always
+  authservice: 
+    container_name: authservice
+    depends_on: 
+      - mysql
+    image: "shubhendu15/moviecruiser:authservice"
+    network_mode: host
+    ports: 
+      - "8082:8082"
+    restart: always
+version: "2"
+

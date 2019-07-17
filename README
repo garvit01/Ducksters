@@ -1,0 +1,11 @@
+Steps to run Movie Cruiser App.
+
+1. Clone the project using `git clone https://gitlab-cts.stackroute.in/Shubhendu.Mishra/moviecruiserserverapplication.git`
+2. Navigate to `moviecruiserserverapplication/frontend` foler
+3. Run `npm install`
+4. Run `ng build --prod`
+5. Navigate to `moviecruiserserverapplication/frontend/dist` folder and move contents of `moviecruiserfrontend` folder to its parent. Delete the empty folder.
+6. Navigate to root folder and run `source ./build.sh`
+7. Run `docker-compose up --build`
+
+The application will be up and running at`http://localhost:4200`

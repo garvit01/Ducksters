@@ -1,0 +1,44 @@
+version: '3.2'
+services:
+  authservice:
+   image: authservice
+   build: AuthenticationService/
+   restart: always
+   network_mode: host
+   ports:
+     - 8082:8082
+   expose:
+     - 8082
+   depends_on:
+     - movie-mysql
+  duckstersservice:
+   image: duckerstersservice
+   build: DuckstersService/
+   restart: always
+   network_mode: host
+   ports:
+     - 8080:8080
+   expose:
+     - 8080
+   depends_on:
+     - movie-mysql
+
+  movie-mysql:
+   image: mysql:5.5
+   network_mode: host
+   ports:
+     - 3306:3306
+   environment:
+     MYSQL_ROOT_PASSWORD: root
+     MYSQL_DATABASE: duckstersdb
+     MYSQL_USER: app_root
+     MYSQL_PASSWORD: root
+   volumes:
+     - /opt/movie/mysqldb:/var/lib/mysql
+  Duckstersfrontend:
+    image: duckstersfrontend
+    build: frontend
+    network_mode: host
+    container_name: frontend
+    ports:
+      - 4200:4200
