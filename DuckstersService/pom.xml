@@ -9,11 +9,9 @@
 		
 		 <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.atd</groupId>
 	<artifactId>DuckstersService</artifactId>
-	
 	<name>DuckstersService</name>
-	<description>Spring Boot Project for Cricket App ]]Server Application</description>
+	<description>Spring Boot Project for Cricket App Server Application</description>
 
 	<properties>
 		<java.version>1.8</java.version>
