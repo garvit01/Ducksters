@@ -8,58 +8,43 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import com.atd.ducksetersService.enums.RoleType;
-
 @Entity
-@Table(name = "role")
-public class Role {
+@Table(name="functions")
+public class Function {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "role_id")
-	int id;
+	@Column(name="function_id")
+	private int id;
 
 	@Column
-	String name;
-
-	@Enumerated(EnumType.STRING)
-	private RoleType roleType;
+	private String name;
 
 	@Embedded
 	@AttributeOverrides({ @AttributeOverride(name = "isActive", column = @Column(name = "isActive")),
 			@AttributeOverride(name = "createdAt", column = @Column(name = "createdAt")),
 			@AttributeOverride(name = "lastModified", column = @Column(name = "lastModified")) })
 	private CommonParametersEmbaddable commonParametersEmbaddable;
-
-	@OneToMany(mappedBy="role",cascade={CascadeType.ALL})
+	
+	@OneToMany(mappedBy="function",cascade={CascadeType.ALL})
 	Set<RoleFunction> roleFunctions;
 
-	public Role() {
+	public Function() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	
-
-	public Role(int id, String name, RoleType roleType, CommonParametersEmbaddable commonParametersEmbaddable//			Set<RoleFunction> roleFunctions
-			) {
+	public Function(int id, String name, CommonParametersEmbaddable commonParametersEmbaddable) {
 		super();
 		this.id = id;
 		this.name = name;
-		this.roleType = roleType;
 		this.commonParametersEmbaddable = commonParametersEmbaddable;
-//		this.roleFunctions = roleFunctions;
 	}
-
-
 
 	public int getId() {
 		return id;
@@ -77,14 +62,6 @@ public class Role {
 		this.name = name;
 	}
 
-	public RoleType getRoleType() {
-		return roleType;
-	}
-
-	public void setRoleType(RoleType roleType) {
-		this.roleType = roleType;
-	}
-
 	public CommonParametersEmbaddable getCommonParametersEmbaddable() {
 		return commonParametersEmbaddable;
 	}
@@ -93,24 +70,11 @@ public class Role {
 		this.commonParametersEmbaddable = commonParametersEmbaddable;
 	}
 
+	@Override
+	public String toString() {
+		return "Functions [id=" + id + ", name=" + name + ", commonParametersEmbaddable=" + commonParametersEmbaddable
+				+ "]";
+	}
 	
-//	public Set<RoleFunction> getRoleFunctions() {
-//		return roleFunctions;
-//	}
-//
-//
-//
-//	public void setRoleFunctions(Set<RoleFunction> roleFunctions) {
-//		this.roleFunctions = roleFunctions;
-//	}
-
-//	@Override
-//	public String toString() {
-//		return "Role [id=" + id + ", name=" + name + ", roleType=" + roleType + ", commonParametersEmbaddable="
-//				+ commonParametersEmbaddable + ", roleFunctions=" + roleFunctions + "]";
-//	}
-
-
-
-
+	
 }
