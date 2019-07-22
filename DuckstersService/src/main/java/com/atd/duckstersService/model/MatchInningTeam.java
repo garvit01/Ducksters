@@ -7,11 +7,13 @@ import javax.persistence.ManyToOne;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
-import com.atd.ducksetersService.enums.InningType;
+import com.atd.duckstersService.enums.InningType;
+
 
 @Entity
 public class MatchInningTeam {
 
+	@id
 	private int id;
 
 	@ManyToOne

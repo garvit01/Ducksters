@@ -1,4 +1,4 @@
-package com.atd.duckstersService.app;
+package com.atd.duckstersService;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

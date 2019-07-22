@@ -16,7 +16,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import com.atd.ducksetersService.enums.RoleType;
+import com.atd.duckstersService.enums.RoleType;
+
 
 @Entity
 @Table(name = "role")

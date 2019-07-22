@@ -11,10 +11,10 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
-import com.atd.ducksetersService.enums.RoleType;
+import com.atd.duckstersService.enums.RoleType;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
-@Entity
+@Entity(name="profile")
 public class User {
 
 	@Id
