@@ -16,10 +16,11 @@ import com.atd.duckstersService.model.Tournament.TournamentAwards;
 import com.atd.duckstersService.model.common.CommonParametersEmbaddable;
 import com.atd.duckstersService.model.match.Match;
 import com.atd.duckstersService.model.match.MatchAwards;
+import com.atd.duckstersService.model.team.TeamUser;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
-@Entity(name = "profile")
-public class User {
+@Entity(name = "userprofile")
+public class UserProfile {
 
 	@Id
 	private int id;
@@ -33,8 +34,9 @@ public class User {
 	@Column
 	private String password;
 
-	@Column
-	private RoleType roleType;
+	@OneToMany(mappedBy = "userProfile", cascade = CascadeType.ALL)
+	@JsonManagedReference
+	private List<Role> listRoles;
 
 	@Column
 	private String state;
@@ -64,14 +66,16 @@ public class User {
 	@OneToMany(mappedBy = "matchAwardedUser", cascade = CascadeType.ALL)
 	@JsonManagedReference
 	private List<MatchAwards> listMatchAwards;
-	
+
 	@OneToMany(mappedBy = "tournamentAwardedUser", cascade = CascadeType.ALL)
 	@JsonManagedReference
 	private List<TournamentAwards> listTournamentAwards;
-	
-	
 
-	public User() {
+	@OneToMany(mappedBy = "userMap", cascade = CascadeType.ALL)
+	@JsonManagedReference
+	private List<TeamUser> teamUser;
+
+	public UserProfile() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -108,12 +112,16 @@ public class User {
 		this.password = password;
 	}
 
-	public RoleType getRoleType() {
-		return roleType;
+	public List<Role> getListRoles() {
+		return listRoles;
 	}
 
-	public void setRoleType(RoleType roleType) {
-		this.roleType = roleType;
+	public void setListRoles(List<Role> listRoles) {
+		this.listRoles = listRoles;
+	}
+
+	public List<TeamUser> getTeamUser() {
+		return teamUser;
 	}
 
 	public String getState() {
@@ -187,7 +195,9 @@ public class User {
 	public void setListTournamentAwards(List<TournamentAwards> listTournamentAwards) {
 		this.listTournamentAwards = listTournamentAwards;
 	}
-	
-	
+
+	public void setTeamUser(List<TeamUser> teamUser) {
+		this.teamUser = teamUser;
+	}
 
 }

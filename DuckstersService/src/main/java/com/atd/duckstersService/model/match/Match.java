@@ -16,7 +16,7 @@ import org.hibernate.annotations.OnDeleteAction;
 
 import com.atd.duckstersService.model.runningMatch.Over;
 import com.atd.duckstersService.model.team.Team;
-import com.atd.duckstersService.model.user.User;
+import com.atd.duckstersService.model.user.UserProfile;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
@@ -42,7 +42,7 @@ public class Match {
 	@JoinColumn(name = "organizer_id", nullable = false)
 	@JsonBackReference
 	@OnDelete(action = OnDeleteAction.CASCADE)
-	private User organizer;
+	private UserProfile organizer;
 
 	@OneToMany(mappedBy = "match", cascade = CascadeType.ALL)
 	@JsonManagedReference
@@ -91,11 +91,11 @@ public class Match {
 		this.scorerName = scorerName;
 	}
 
-	public User getOrganizer() {
+	public UserProfile getOrganizer() {
 		return organizer;
 	}
 
-	public void setOrganizer(User organizer) {
+	public void setOrganizer(UserProfile organizer) {
 		this.organizer = organizer;
 	}
 

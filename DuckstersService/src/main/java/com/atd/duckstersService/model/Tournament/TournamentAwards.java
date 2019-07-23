@@ -12,7 +12,7 @@ import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 import com.atd.duckstersService.enums.Awards;
-import com.atd.duckstersService.model.user.User;
+import com.atd.duckstersService.model.user.UserProfile;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
@@ -32,12 +32,12 @@ public class TournamentAwards {
 	@JoinColumn(name = "award_winner_id", nullable = true)
 	@JsonBackReference
 	@OnDelete(action = OnDeleteAction.CASCADE)
-	private User tournamentAwardedUser;
+	private UserProfile tournamentAwardedUser;
 
 	@Enumerated(EnumType.STRING)
 	private Awards award;
 
-	public TournamentAwards(int id, Tournament tournamentForAwards, User tournamentAwardedUser, Awards award) {
+	public TournamentAwards(int id, Tournament tournamentForAwards, UserProfile tournamentAwardedUser, Awards award) {
 		super();
 		this.id = id;
 		this.tournamentForAwards = tournamentForAwards;
@@ -66,11 +66,11 @@ public class TournamentAwards {
 		this.tournamentForAwards = tournamentForAwards;
 	}
 
-	public User getTournamentAwardedUser() {
+	public UserProfile getTournamentAwardedUser() {
 		return tournamentAwardedUser;
 	}
 
-	public void setTournamentAwardedUser(User tournamentAwardedUser) {
+	public void setTournamentAwardedUser(UserProfile tournamentAwardedUser) {
 		this.tournamentAwardedUser = tournamentAwardedUser;
 	}
 

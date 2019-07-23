@@ -12,6 +12,7 @@ import com.atd.duckstersService.model.Tournament.Tournament;
 import com.atd.duckstersService.model.Tournament.TournamentTeam;
 import com.atd.duckstersService.model.match.Match;
 import com.atd.duckstersService.model.match.MatchInningTeam;
+import com.atd.duckstersService.model.user.UserProfile;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
@@ -33,15 +34,20 @@ public class Team {
 
 	@OneToMany(mappedBy = "team", cascade = CascadeType.ALL)
 	@JsonManagedReference
-	private List<MatchInningTeam> matchInningTeam;
+	private List<MatchInningTeam> listMatchInningTeam;
 
 	@OneToMany(mappedBy = "winnerTeam", cascade = CascadeType.ALL)
 	@JsonManagedReference
-	private List<Match> winningMatches;
-	
+	private List<Match> listWinningMatches;
+
 	@OneToMany(mappedBy = "tournamentWinnerTeam", cascade = CascadeType.ALL)
 	@JsonManagedReference
-	private List<Tournament> winningTournament;
+	private List<Tournament> listWinningTournament;
+	
+	@OneToMany(mappedBy = "teamMap", cascade = CascadeType.ALL)
+	@JsonManagedReference
+	private List<TeamUser> teamUser;
+
 
 	public Team() {
 		super();
@@ -81,19 +87,19 @@ public class Team {
 	}
 
 	public List<MatchInningTeam> getMatchInningTeam() {
-		return matchInningTeam;
+		return listMatchInningTeam;
 	}
 
 	public void setMatchInningTeam(List<MatchInningTeam> matchInningTeam) {
-		this.matchInningTeam = matchInningTeam;
+		this.listMatchInningTeam = matchInningTeam;
 	}
 
 	public List<Match> getWinningMatches() {
-		return winningMatches;
+		return listWinningMatches;
 	}
 
 	public void setWinningMatches(List<Match> winningMatches) {
-		this.winningMatches = winningMatches;
+		this.listWinningMatches = winningMatches;
 	}
 
 }

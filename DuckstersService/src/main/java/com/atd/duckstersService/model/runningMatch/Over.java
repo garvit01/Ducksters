@@ -16,7 +16,7 @@ import org.hibernate.annotations.OnDeleteAction;
 
 import com.atd.duckstersService.model.Tournament.TournamentTeam;
 import com.atd.duckstersService.model.match.Match;
-import com.atd.duckstersService.model.user.User;
+import com.atd.duckstersService.model.user.UserProfile;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
@@ -44,14 +44,14 @@ public class Over {
 	@ManyToOne
 	@JoinColumn(name = "bowler_id", nullable = false)
 	@OnDelete(action = OnDeleteAction.CASCADE)
-	private User bowler;
+	private UserProfile bowler;
 
 	public Over() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Over(int id, int overNo, List<Ball> balls, Match matchOfThisOver, User bowler) {
+	public Over(int id, int overNo, List<Ball> balls, Match matchOfThisOver, UserProfile bowler) {
 		super();
 		this.id = id;
 		this.overNo = overNo;
@@ -92,11 +92,11 @@ public class Over {
 		this.matchOfThisOver = matchOfThisOver;
 	}
 
-	public User getBowler() {
+	public UserProfile getBowler() {
 		return bowler;
 	}
 
-	public void setBowler(User bowler) {
+	public void setBowler(UserProfile bowler) {
 		this.bowler = bowler;
 	}
 

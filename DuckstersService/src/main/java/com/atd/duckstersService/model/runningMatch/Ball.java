@@ -11,7 +11,7 @@ import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 import com.atd.duckstersService.enums.ExtraRuns;
-import com.atd.duckstersService.model.user.User;
+import com.atd.duckstersService.model.user.UserProfile;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
@@ -45,7 +45,7 @@ public class Ball {
 	@ManyToOne
 	@JoinColumn(name = "striker_id", nullable = false)
 	@OnDelete(action = OnDeleteAction.CASCADE)
-	private User user;
+	private UserProfile user;
 
 	public Ball() {
 		super();
@@ -53,7 +53,7 @@ public class Ball {
 	}
 
 	public Ball(int id, Over over, int bowlNumber, int runScored, boolean isExtraBall, ExtraRuns extrarunType,
-			int extraRun, User user) {
+			int extraRun, UserProfile user) {
 		super();
 		this.id = id;
 		this.overOfThisBall = over;
@@ -121,11 +121,11 @@ public class Ball {
 		this.extraRun = extraRun;
 	}
 
-	public User getUser() {
+	public UserProfile getUser() {
 		return user;
 	}
 
-	public void setUser(User user) {
+	public void setUser(UserProfile user) {
 		this.user = user;
 	}
 

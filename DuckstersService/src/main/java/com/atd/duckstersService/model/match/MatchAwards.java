@@ -11,7 +11,7 @@ import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 import com.atd.duckstersService.enums.Awards;
-import com.atd.duckstersService.model.user.User;
+import com.atd.duckstersService.model.user.UserProfile;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
@@ -30,7 +30,7 @@ public class MatchAwards {
 	@JoinColumn(name = "award_winner_user_id", nullable = true)
 	@JsonBackReference
 	@OnDelete(action = OnDeleteAction.CASCADE)
-	private User matchAwardedUser;
+	private UserProfile matchAwardedUser;
 
 	@Enumerated(EnumType.STRING)
 	private Awards award;
@@ -40,7 +40,7 @@ public class MatchAwards {
 		// TODO Auto-generated constructor stub
 	}
 
-	public MatchAwards(int id, Match match, User user, Awards award) {
+	public MatchAwards(int id, Match match, UserProfile user, Awards award) {
 		super();
 		this.id = id;
 		this.matchForAwards = match;
@@ -64,11 +64,11 @@ public class MatchAwards {
 		this.matchForAwards = match;
 	}
 
-	public User getUser() {
+	public UserProfile getUser() {
 		return matchAwardedUser;
 	}
 
-	public void setUser(User user) {
+	public void setUser(UserProfile user) {
 		this.matchAwardedUser = user;
 	}
 
