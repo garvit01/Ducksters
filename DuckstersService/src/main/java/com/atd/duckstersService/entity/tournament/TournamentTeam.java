@@ -13,6 +13,7 @@ import org.hibernate.annotations.OnDeleteAction;
 
 import com.atd.duckstersService.entity.team.Team;
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class TournamentTeam {
@@ -43,7 +44,6 @@ public class TournamentTeam {
 		// TODO Auto-generated constructor stub
 	}
 
-
 	public TournamentTeam(int id, Tournament tournament, Team joinedTeams, Date joinedDate, boolean paymentSuccessful) {
 		super();
 		this.id = id;
@@ -53,9 +53,6 @@ public class TournamentTeam {
 		this.paymentSuccessful = paymentSuccessful;
 	}
 
-
-
-
 	public int getId() {
 		return id;
 	}
@@ -64,6 +61,7 @@ public class TournamentTeam {
 		this.id = id;
 	}
 
+	@JsonIgnore
 	public Tournament getTournament() {
 		return tournament;
 	}
@@ -72,7 +70,6 @@ public class TournamentTeam {
 		this.tournament = tournament;
 	}
 
-	
 	public Date getJoinedDate() {
 		return joinedDate;
 	}
@@ -89,16 +86,13 @@ public class TournamentTeam {
 		this.paymentSuccessful = paymentSuccessful;
 	}
 
-
+	@JsonIgnore
 	public Team getJoinedTeams() {
 		return joinedTeams;
 	}
 
-
 	public void setJoinedTeams(Team joinedTeams) {
 		this.joinedTeams = joinedTeams;
 	}
-	
-	
 
 }

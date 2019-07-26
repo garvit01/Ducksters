@@ -38,9 +38,9 @@ public class Team {
 	@JsonManagedReference
 	private List<TournamentTeam> listTournaments;
 
-	@OneToMany(mappedBy = "team", cascade = CascadeType.ALL)
-	@JsonManagedReference
-	private List<MatchInningTeam> listMatchInningTeam;
+//	@OneToMany(mappedBy = "team", cascade = CascadeType.ALL)
+//	@JsonManagedReference
+//	private List<MatchInningTeam> listMatchInningTeam;
 
 	@OneToMany(mappedBy = "winnerTeam", cascade = CascadeType.ALL)
 	@JsonManagedReference
@@ -99,13 +99,13 @@ public class Team {
 		this.listTournaments = listTournaments;
 	}
 
-	public List<MatchInningTeam> getMatchInningTeam() {
-		return listMatchInningTeam;
-	}
-
-	public void setMatchInningTeam(List<MatchInningTeam> matchInningTeam) {
-		this.listMatchInningTeam = matchInningTeam;
-	}
+//	public List<MatchInningTeam> getMatchInningTeam() {
+//		return listMatchInningTeam;
+//	}
+//
+//	public void setMatchInningTeam(List<MatchInningTeam> matchInningTeam) {
+//		this.listMatchInningTeam = matchInningTeam;
+//	}
 
 	public List<Match> getWinningMatches() {
 		return listWinningMatches;
@@ -115,13 +115,6 @@ public class Team {
 		this.listWinningMatches = winningMatches;
 	}
 
-	public List<MatchInningTeam> getListMatchInningTeam() {
-		return listMatchInningTeam;
-	}
-
-	public void setListMatchInningTeam(List<MatchInningTeam> listMatchInningTeam) {
-		this.listMatchInningTeam = listMatchInningTeam;
-	}
 
 	public List<Match> getListWinningMatches() {
 		return listWinningMatches;

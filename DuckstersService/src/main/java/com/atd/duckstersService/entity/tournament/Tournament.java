@@ -9,12 +9,10 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
@@ -23,6 +21,7 @@ import com.atd.duckstersService.entity.common.CommonParametersEmbaddable;
 import com.atd.duckstersService.entity.common.Scheme;
 import com.atd.duckstersService.entity.team.Team;
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
@@ -41,7 +40,7 @@ public class Tournament {
 	private String place;
 
 	@Column
-	private boolean status;
+	private String status;
 
 	@Column
 	private Date startDate;
@@ -67,8 +66,10 @@ public class Tournament {
 	@OnDelete(action = OnDeleteAction.CASCADE)
 	private Team tournamentWinnerTeam;
 
-	@OneToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "scheme_id")
+	@ManyToOne
+	@JoinColumn(name = "scheme_id", nullable = true)
+	@JsonBackReference
+	@OnDelete(action = OnDeleteAction.CASCADE)
 	private Scheme scheme;
 
 	@OneToMany(mappedBy = "tournament", cascade = CascadeType.ALL)
@@ -83,7 +84,7 @@ public class Tournament {
 	@AttributeOverrides({ @AttributeOverride(name = "isActive", column = @Column(name = "isActive")),
 			@AttributeOverride(name = "createdAt", column = @Column(name = "createdAt")),
 			@AttributeOverride(name = "lastModified", column = @Column(name = "lastModified")),
-			@AttributeOverride(name = "isVerified", column = @Column(name = "isVerified"))})
+			@AttributeOverride(name = "isVerified", column = @Column(name = "isVerified")) })
 	private CommonParametersEmbaddable commonParametersEmbaddable;
 
 	public Tournament() {
@@ -91,7 +92,7 @@ public class Tournament {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Tournament(int id, String name, String description, String place, boolean status, Date startDate,
+	public Tournament(int id, String name, String description, String place, String status, Date startDate,
 			Date endDate, Date lastRegistrationDate, String venue, int minTeams, int maxTeams,
 			Team tournamentWinnerTeam, Scheme scheme, List<TournamentTeam> listtournamentTeams,
 			List<TournamentAward> listtournamentAwards, CommonParametersEmbaddable commonParametersEmbaddable) {
@@ -146,11 +147,11 @@ public class Tournament {
 		this.place = place;
 	}
 
-	public boolean isStatus() {
+	public String getStatus() {
 		return status;
 	}
 
-	public void setStatus(boolean status) {
+	public void setStatus(String status) {
 		this.status = status;
 	}
 
@@ -202,20 +203,13 @@ public class Tournament {
 		this.maxTeams = maxTeams;
 	}
 
+	@JsonIgnore
 	public Team getWinningTeam() {
 		return tournamentWinnerTeam;
 	}
 
 	public void setWinningTeam(Team winningTeam) {
 		this.tournamentWinnerTeam = winningTeam;
-	}
-
-	public Team getTournamentWinnerTeam() {
-		return tournamentWinnerTeam;
-	}
-
-	public void setTournamentWinnerTeam(Team tournamentWinnerTeam) {
-		this.tournamentWinnerTeam = tournamentWinnerTeam;
 	}
 
 	public Scheme getScheme() {
@@ -226,6 +220,7 @@ public class Tournament {
 		this.scheme = scheme;
 	}
 
+	@JsonIgnore
 	public List<TournamentTeam> getTournamentTeams() {
 		return listtournamentTeams;
 	}
@@ -240,22 +235,6 @@ public class Tournament {
 
 	public void setTournamentAwards(List<TournamentAward> tournamentAwards) {
 		this.listtournamentAwards = tournamentAwards;
-	}
-
-	public List<TournamentTeam> getListtournamentTeams() {
-		return listtournamentTeams;
-	}
-
-	public void setListtournamentTeams(List<TournamentTeam> listtournamentTeams) {
-		this.listtournamentTeams = listtournamentTeams;
-	}
-
-	public List<TournamentAward> getListtournamentAwards() {
-		return listtournamentAwards;
-	}
-
-	public void setListtournamentAwards(List<TournamentAward> listtournamentAwards) {
-		this.listtournamentAwards = listtournamentAwards;
 	}
 
 	public CommonParametersEmbaddable getCommonParametersEmbaddable() {

@@ -18,6 +18,7 @@ com\atd\duckstersService\enums\InningType.class
 com\atd\duckstersService\repository\FunctionRepo.class
 com\atd\duckstersService\enums\Awards.class
 com\atd\duckstersService\repository\MatchRepo.class
+com\atd\duckstersService\config\SwaggerConfig.class
 com\atd\duckstersService\repository\UserProfileRepo.class
 com\atd\duckstersService\service\SchemeService.class
 com\atd\duckstersService\enums\ExtraRuns.class
@@ -28,6 +29,7 @@ com\atd\duckstersService\filter\JwtFilter.class
 com\atd\duckstersService\entity\common\CommonParametersEmbaddable.class
 com\atd\duckstersService\repository\TeamRepo.class
 com\atd\duckstersService\entity\user\RoleFunction.class
+com\atd\duckstersService\enums\TournamentStatus.class
 com\atd\duckstersService\controller\UserProfileController.class
 com\atd\duckstersService\entity\match\Match.class
 com\atd\duckstersService\service\UserProfileService.class

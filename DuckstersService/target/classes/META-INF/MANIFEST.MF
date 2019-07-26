@@ -1,9 +1,0 @@
-Manifest-Version: 1.0
-Implementation-Title: DuckstersService
-Implementation-Version: 1.0-SNAPSHOT
-Built-By: 737059
-Implementation-Vendor-Id: com.atd
-Build-Jdk: 1.8.0_141
-Implementation-URL: http://maven.apache.org/DuckstersService
-Created-By: Maven Integration for Eclipse
-

@@ -12,13 +12,13 @@ import com.atd.duckstersService.entity.user.UserProfile;
 import com.atd.duckstersService.service.UserProfileService;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/userprofile/")
 public class UserProfileController {
 
 	@Autowired
 	private UserProfileService userProfileService;
 
-	@GetMapping(path="/userprofile/{id}")
+	@GetMapping(path="{id}")
 	public ResponseEntity<UserProfile> getCustomer(@PathVariable("id") int id) {
 		System.out.println("INSIDE CONTROLLER");
 		UserProfile userProfile = userProfileService.getUserProfileByInt(id);

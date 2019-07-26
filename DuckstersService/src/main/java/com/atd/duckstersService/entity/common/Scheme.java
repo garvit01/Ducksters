@@ -1,8 +1,15 @@
 package com.atd.duckstersService.entity.common;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
+import com.atd.duckstersService.entity.tournament.Tournament;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 public class Scheme {
@@ -28,13 +35,17 @@ public class Scheme {
 	@Column
 	private Double organizerFee;
 
+	@OneToMany(mappedBy = "scheme", cascade = CascadeType.ALL)
+	@JsonManagedReference
+	List<Tournament> listTournament;
+
 	public Scheme() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
 	public Scheme(int id, String name, String description, Double winningPrize, Double entryFee, Double transactionFee,
-			Double organizerFee) {
+			Double organizerFee, List<Tournament> listTournament) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -43,6 +54,15 @@ public class Scheme {
 		this.entryFee = entryFee;
 		this.transactionFee = transactionFee;
 		this.organizerFee = organizerFee;
+		this.listTournament = listTournament;
+	}
+
+	public List<Tournament> getListTournament() {
+		return listTournament;
+	}
+
+	public void setListTournament(List<Tournament> listTournament) {
+		this.listTournament = listTournament;
 	}
 
 	public int getId() {
