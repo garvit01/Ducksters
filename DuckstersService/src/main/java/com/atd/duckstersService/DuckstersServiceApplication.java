@@ -9,17 +9,19 @@ import org.springframework.context.annotation.Bean;
 
 import com.atd.duckstersService.filter.JwtFilter;
 
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages={
+		"com.atd.duckstersService"})
 public class DuckstersServiceApplication {
 
-	@Bean
-	public FilterRegistrationBean<Filter> jwtFilter() {
-		final FilterRegistrationBean<Filter> registrationBean = new FilterRegistrationBean<>();
-		registrationBean.setFilter(new JwtFilter());
-		registrationBean.addUrlPatterns("/api/*");
-
-		return registrationBean;
-	}
+//	@Bean
+//	public FilterRegistrationBean<Filter> jwtFilter() {
+//		final FilterRegistrationBean<Filter> registrationBean = new FilterRegistrationBean<>();
+//		registrationBean.setFilter(new JwtFilter());
+//		registrationBean.addUrlPatterns("/api/*");
+//
+//		return registrationBean;
+//	}
+	
 
 	public static void main(String args[]) {
 		SpringApplication.run(DuckstersServiceApplication.class, args);

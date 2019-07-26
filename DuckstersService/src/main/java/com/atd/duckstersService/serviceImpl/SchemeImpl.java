@@ -3,7 +3,7 @@ package com.atd.duckstersService.serviceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.atd.duckstersService.model.common.Scheme;
+import com.atd.duckstersService.entity.common.Scheme;
 import com.atd.duckstersService.repository.SchemeRepo;
 import com.atd.duckstersService.service.SchemeService;
 
