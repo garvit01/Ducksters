@@ -15,13 +15,12 @@ public class UserProfileServiceImpl implements UserProfileService {
 
 	@Autowired
 	public UserProfileServiceImpl(UserProfileRepo userProfileRepo) {
-		/*super();*/
+		/* super(); */
 		this.userProfileRepo = userProfileRepo;
 	}
 
 	@Override
-	public UserProfile getUserProfileByInt(int id) {
-		// TODO Auto-generated method stub
+	public UserProfile getUserById(int id) {
 		UserProfile userProfile = null;
 		Optional<UserProfile> opt = userProfileRepo.findById(id);
 		if (opt.isPresent())

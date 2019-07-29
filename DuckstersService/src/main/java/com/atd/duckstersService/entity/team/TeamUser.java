@@ -1,5 +1,6 @@
 package com.atd.duckstersService.entity.team;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;

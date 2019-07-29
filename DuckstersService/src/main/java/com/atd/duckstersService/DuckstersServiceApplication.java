@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Bean;
 import com.atd.duckstersService.filter.JwtFilter;
 
 @SpringBootApplication(scanBasePackages={
-		"com.atd.duckstersService"})
+		"com.atd.duckstersService"}) 
 public class DuckstersServiceApplication {
 
 //	@Bean

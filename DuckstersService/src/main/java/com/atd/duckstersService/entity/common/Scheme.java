@@ -121,4 +121,13 @@ public class Scheme {
 		this.organizerFee = organizerFee;
 	}
 
+	@Override
+	public String toString() {
+		return "Scheme [id=" + id + ", name=" + name + ", description=" + description + ", winningPrize=" + winningPrize
+				+ ", entryFee=" + entryFee + ", transactionFee=" + transactionFee + ", organizerFee=" + organizerFee
+				+ ", listTournament=" + listTournament + "]";
+	}
+
+	
+	
 }

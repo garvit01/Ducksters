@@ -229,6 +229,7 @@ public class Tournament {
 		this.listtournamentTeams = tournamentTeams;
 	}
 
+	@JsonIgnore
 	public List<TournamentAward> getTournamentAwards() {
 		return listtournamentAwards;
 	}

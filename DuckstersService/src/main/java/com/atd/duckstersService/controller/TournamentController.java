@@ -1,5 +1,6 @@
 package com.atd.duckstersService.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,9 +9,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.atd.duckstersService.DTO.TeamMembersDTO;
+import com.atd.duckstersService.entity.team.Team;
 import com.atd.duckstersService.entity.tournament.Tournament;
+import com.atd.duckstersService.entity.user.UserProfile;
 import com.atd.duckstersService.exception.NoDataFoundException;
 import com.atd.duckstersService.service.TournamentService;
 
@@ -32,6 +37,7 @@ public class TournamentController {
 		ResponseEntity<?> responseEntity = null;
 		try {
 			List<Tournament> listLiveTournament = tournamentService.listLiveTournaments(status.toUpperCase());
+			System.out.println(listLiveTournament);
 			responseEntity = new ResponseEntity<List<Tournament>>(listLiveTournament, HttpStatus.OK);
 		} catch (NoDataFoundException e) {
 			// TODO Auto-generated catch block
