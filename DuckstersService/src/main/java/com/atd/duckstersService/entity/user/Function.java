@@ -1,15 +1,11 @@
 package com.atd.duckstersService.entity.user;
 
-import java.util.Set;
-
 import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.atd.duckstersService.entity.common.CommonParametersEmbaddable;
@@ -31,8 +27,8 @@ public class Function {
 			@AttributeOverride(name = "isVerified", column = @Column(name = "isVerified")) })
 	private CommonParametersEmbaddable commonParametersEmbaddable;
 
-	@OneToMany(mappedBy = "function", cascade = { CascadeType.ALL })
-	Set<RoleFunction> roleFunctions;
+//	@OneToMany(mappedBy = "function", cascade = { CascadeType.ALL })
+//	Set<RoleFunction> roleFunctions;
 
 	public Function() {
 		super();

@@ -1,28 +1,23 @@
 package com.atd.duckstersService.entity.match;
 
-import java.util.List;
 
 import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 import com.atd.duckstersService.entity.common.CommonParametersEmbaddable;
-import com.atd.duckstersService.entity.runningMatch.Over;
 import com.atd.duckstersService.entity.team.Team;
 import com.atd.duckstersService.entity.user.UserProfile;
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @Table(name = "matches")
@@ -38,21 +33,21 @@ public class Match {
 	@Column
 	private String scorerName;
 
-	@OneToMany(mappedBy = "matches", cascade = CascadeType.ALL)
-	@JsonManagedReference
-	private List<MatchType> listMatchTypes;
-
-	@OneToMany(mappedBy = "match", cascade = CascadeType.ALL)
-	@JsonManagedReference
-	private List<MatchInningTeam> listMatchInningTeam;
-
-	 @OneToMany(mappedBy = "matchForAwards", cascade = CascadeType.ALL)
-	 @JsonManagedReference
-	 private List<MatchAward> listMatchAwards;
-
-	@OneToMany(mappedBy = "matchOfThisOver", cascade = CascadeType.ALL)
-	@JsonManagedReference
-	private List<Over> listOvers;
+//	@OneToMany(mappedBy = "matches", cascade = CascadeType.ALL)
+//	@JsonManagedReference
+//	private List<MatchType> listMatchTypes;
+//
+//	@OneToMany(mappedBy = "match", cascade = CascadeType.ALL)
+//	@JsonManagedReference
+//	private List<MatchInningTeam> listMatchInningTeam;
+//
+//	 @OneToMany(mappedBy = "matchForAwards", cascade = CascadeType.ALL)
+//	 @JsonManagedReference
+//	 private List<MatchAward> listMatchAwards;
+//
+//	@OneToMany(mappedBy = "matchOfThisOver", cascade = CascadeType.ALL)
+//	@JsonManagedReference
+//	private List<Over> listOvers;
 
 	@ManyToOne
 	@JoinColumn(name = "winner_team_id", nullable = true)
@@ -75,7 +70,6 @@ public class Match {
 
 	public Match() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public int getId() {
@@ -110,13 +104,13 @@ public class Match {
 		this.organizer = organizer;
 	}
 
-	public List<MatchInningTeam> getMatchInningTeam() {
-		return listMatchInningTeam;
-	}
-
-	public void setMatchInningTeam(List<MatchInningTeam> matchInningTeam) {
-		this.listMatchInningTeam = matchInningTeam;
-	}
+//	public List<MatchInningTeam> getMatchInningTeam() {
+//		return listMatchInningTeam;
+//	}
+//
+//	public void setMatchInningTeam(List<MatchInningTeam> matchInningTeam) {
+//		this.listMatchInningTeam = matchInningTeam;
+//	}
 
 	public Team getWinnerTeam() {
 		return winnerTeam;
@@ -134,13 +128,13 @@ public class Match {
 	// this.listMatchAwards = matchAwards;
 	// }
 
-	public List<Over> getListOvers() {
-		return listOvers;
-	}
-
-	public void setListOvers(List<Over> listOvers) {
-		this.listOvers = listOvers;
-	}
+//	public List<Over> getListOvers() {
+//		return listOvers;
+//	}
+//
+//	public void setListOvers(List<Over> listOvers) {
+//		this.listOvers = listOvers;
+//	}
 
 	public CommonParametersEmbaddable getCommonParametersEmbaddable() {
 		return commonParametersEmbaddable;
@@ -149,21 +143,21 @@ public class Match {
 	public void setCommonParametersEmbaddable(CommonParametersEmbaddable commonParametersEmbaddable) {
 		this.commonParametersEmbaddable = commonParametersEmbaddable;
 	}
-
-	public List<MatchType> getListMatchTypes() {
-		return listMatchTypes;
-	}
-
-	public void setListMatchTypes(List<MatchType> listMatchTypes) {
-		this.listMatchTypes = listMatchTypes;
-	}
-
-	public List<MatchInningTeam> getListMatchInningTeam() {
-		return listMatchInningTeam;
-	}
-
-	public void setListMatchInningTeam(List<MatchInningTeam> listMatchInningTeam) {
-		this.listMatchInningTeam = listMatchInningTeam;
-	}
+//
+//	public List<MatchType> getListMatchTypes() {
+//		return listMatchTypes;
+//	}
+//
+//	public void setListMatchTypes(List<MatchType> listMatchTypes) {
+//		this.listMatchTypes = listMatchTypes;
+//	}
+//
+//	public List<MatchInningTeam> getListMatchInningTeam() {
+//		return listMatchInningTeam;
+//	}
+//
+//	public void setListMatchInningTeam(List<MatchInningTeam> listMatchInningTeam) {
+//		this.listMatchInningTeam = listMatchInningTeam;
+//	}
 
 }

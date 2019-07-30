@@ -76,9 +76,9 @@ public class Tournament {
 	@JsonManagedReference
 	private List<TournamentTeam> listtournamentTeams;
 
-	@OneToMany(mappedBy = "tournamentForAwards", cascade = CascadeType.ALL)
-	@JsonManagedReference
-	private List<TournamentAward> listtournamentAwards;
+//	@OneToMany(mappedBy = "tournamentForAwards", cascade = CascadeType.ALL)
+//	@JsonManagedReference
+//	private List<TournamentAward> listtournamentAwards;
 
 	@Embedded
 	@AttributeOverrides({ @AttributeOverride(name = "isActive", column = @Column(name = "isActive")),
@@ -94,8 +94,7 @@ public class Tournament {
 
 	public Tournament(int id, String name, String description, String place, String status, Date startDate,
 			Date endDate, Date lastRegistrationDate, String venue, int minTeams, int maxTeams,
-			Team tournamentWinnerTeam, Scheme scheme, List<TournamentTeam> listtournamentTeams,
-			List<TournamentAward> listtournamentAwards, CommonParametersEmbaddable commonParametersEmbaddable) {
+			Team tournamentWinnerTeam, Scheme scheme, List<TournamentTeam> listtournamentTeams,CommonParametersEmbaddable commonParametersEmbaddable) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -111,7 +110,6 @@ public class Tournament {
 		this.tournamentWinnerTeam = tournamentWinnerTeam;
 		this.scheme = scheme;
 		this.listtournamentTeams = listtournamentTeams;
-		this.listtournamentAwards = listtournamentAwards;
 		this.commonParametersEmbaddable = commonParametersEmbaddable;
 	}
 
@@ -227,15 +225,6 @@ public class Tournament {
 
 	public void setTournamentTeams(List<TournamentTeam> tournamentTeams) {
 		this.listtournamentTeams = tournamentTeams;
-	}
-
-	@JsonIgnore
-	public List<TournamentAward> getTournamentAwards() {
-		return listtournamentAwards;
-	}
-
-	public void setTournamentAwards(List<TournamentAward> tournamentAwards) {
-		this.listtournamentAwards = tournamentAwards;
 	}
 
 	public CommonParametersEmbaddable getCommonParametersEmbaddable() {

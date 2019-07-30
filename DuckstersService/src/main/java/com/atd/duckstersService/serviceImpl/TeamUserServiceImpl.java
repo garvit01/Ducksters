@@ -5,7 +5,11 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.atd.duckstersService.DTO.TeamDetailsDTO;
 import com.atd.duckstersService.DTO.TeamMembersDTO;
+import com.atd.duckstersService.entity.team.TeamUser;
+import com.atd.duckstersService.entity.user.UserProfile;
+import com.atd.duckstersService.exception.AlreadyFoundException;
 import com.atd.duckstersService.exception.NoDataFoundException;
 import com.atd.duckstersService.repository.TeamUserRepo;
 import com.atd.duckstersService.service.TeamUserService;
@@ -22,14 +26,28 @@ public class TeamUserServiceImpl implements TeamUserService {
 	}
 
 	@Override
-	public List<TeamMembersDTO> listTeamPlayersByTeamId(int id) throws NoDataFoundException {
+	public List<TeamMembersDTO> listTeamPlayersByTeamId(int id) {
 
 		List<TeamMembersDTO> listPlayers = null;
 		listPlayers = teamUserRepo.listAllTeamMembersByTeamId(id);
-		if (listPlayers.size() == 0)
-			throw new NoDataFoundException("No Player joined this team");
-		else
-			return listPlayers;
+
+		return listPlayers;
+	}
+
+	@Override
+	public List<TeamDetailsDTO> listTeamsByUserId(int id) {
+		List<TeamDetailsDTO> listTeams = null;
+		listTeams = teamUserRepo.listAllTeamByUserId(id);
+		return listTeams;
+	}
+
+	@Override
+	public TeamUser addMembersToTeam(TeamUser teamUser) throws AlreadyFoundException {
+		TeamUser alreadyUser = teamUserRepo.findByUserMap(teamUser.getUserMap());
+		if (alreadyUser != null)
+			throw new AlreadyFoundException("Player already in this team");
+		TeamUser savedTeamUser = teamUserRepo.save(teamUser);
+		return savedTeamUser;
 	}
 
 }

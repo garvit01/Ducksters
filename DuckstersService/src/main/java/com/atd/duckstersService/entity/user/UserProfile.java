@@ -9,11 +9,10 @@ import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.Index;
 import javax.persistence.OneToMany;
-import javax.persistence.Table;
 
 import com.atd.duckstersService.entity.common.CommonParametersEmbaddable;
+import com.atd.duckstersService.entity.match.Match;
 import com.atd.duckstersService.entity.match.MatchAward;
 import com.atd.duckstersService.entity.team.TeamUser;
 import com.atd.duckstersService.entity.tournament.TournamentAward;
@@ -34,9 +33,9 @@ public class UserProfile {
 	@Column
 	private String password;
 
-	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-	@JsonManagedReference
-	private List<UserRole> listRoles;
+	// @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+	// @JsonManagedReference
+	// private List<UserRole> listRoles;
 
 	@Column
 	private String state;
@@ -59,21 +58,21 @@ public class UserProfile {
 			@AttributeOverride(name = "lastModified", column = @Column(name = "lastModified")) })
 	private CommonParametersEmbaddable commonParametersEmbaddable;
 
-//	@OneToMany(mappedBy = "organizer", cascade = CascadeType.ALL)
+	// @OneToMany(mappedBy = "organizer", cascade = CascadeType.ALL)
+	// @JsonManagedReference
+	// private List<Match> listMatches;
+
+//	@OneToMany(mappedBy = "matchAwardedUser", cascade = CascadeType.ALL)
 //	@JsonManagedReference
-//	private List<Match> listMatches;
+//	private List<MatchAward> listMatchAwards;
+//
+//	@OneToMany(mappedBy = "tournamentAwardedUser", cascade = CascadeType.ALL)
+//	@JsonManagedReference
+//	private List<TournamentAward> listTournamentAwards;
 
-	@OneToMany(mappedBy = "matchAwardedUser", cascade = CascadeType.ALL)
-	@JsonManagedReference
-	private List<MatchAward> listMatchAwards;
-
-	@OneToMany(mappedBy = "tournamentAwardedUser", cascade = CascadeType.ALL)
-	@JsonManagedReference
-	private List<TournamentAward> listTournamentAwards;
-
-	@OneToMany(mappedBy = "userMap", cascade = CascadeType.ALL)
-	@JsonManagedReference
-	private List<TeamUser> teamUser;
+	// @OneToMany(mappedBy = "userMap", cascade = CascadeType.ALL)
+	// @JsonManagedReference
+	// private List<TeamUser> teamUser;
 
 	public UserProfile() {
 		super();
@@ -110,12 +109,6 @@ public class UserProfile {
 
 	public void setPassword(String password) {
 		this.password = password;
-	}
-
-
-
-	public List<TeamUser> getTeamUser() {
-		return teamUser;
 	}
 
 	public String getState() {
@@ -166,35 +159,19 @@ public class UserProfile {
 		this.commonParametersEmbaddable = commonParametersEmbaddable;
 	}
 
-
-	public List<MatchAward> getListMatchAwards() {
-		return listMatchAwards;
-	}
-
-	public void setListMatchAwards(List<MatchAward> listMatchAwards) {
-		this.listMatchAwards = listMatchAwards;
-	}
-
-	public List<TournamentAward> getListTournamentAwards() {
-		return listTournamentAwards;
-	}
-
-	public void setListTournamentAwards(List<TournamentAward> listTournamentAwards) {
-		this.listTournamentAwards = listTournamentAwards;
-	}
-
-	public void setTeamUser(List<TeamUser> teamUser) {
-		this.teamUser = teamUser;
-	}
-
-	public List<UserRole> getListRoles() {
-		return listRoles;
-	}
-
-	public void setListRoles(List<UserRole> listRoles) {
-		this.listRoles = listRoles;
-	}
-	
-	
-
+//	public List<MatchAward> getListMatchAwards() {
+//		return listMatchAwards;
+//	}
+//
+//	public void setListMatchAwards(List<MatchAward> listMatchAwards) {
+//		this.listMatchAwards = listMatchAwards;
+//	}
+//
+//	public List<TournamentAward> getListTournamentAwards() {
+//		return listTournamentAwards;
+//	}
+//
+//	public void setListTournamentAwards(List<TournamentAward> listTournamentAwards) {
+//		this.listTournamentAwards = listTournamentAwards;
+//	}
 }

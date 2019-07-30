@@ -34,9 +34,9 @@ public class Team {
 	@Column
 	private String coverPhoto;
 
-	@OneToMany(mappedBy = "joinedTeams", cascade = CascadeType.ALL)
-	@JsonManagedReference
-	private List<TournamentTeam> listTournaments;
+//	@OneToMany(mappedBy = "joinedTeams", cascade = CascadeType.ALL)
+//	@JsonManagedReference
+//	private List<TournamentTeam> listTournaments;
 
 //	@OneToMany(mappedBy = "team", cascade = CascadeType.ALL)
 //	@JsonManagedReference
@@ -50,9 +50,9 @@ public class Team {
 //	@JsonManagedReference
 //	private List<Tournament> listWinningTournament;
 
-	 @OneToMany(mappedBy = "teamMap", cascade = CascadeType.ALL)
-	 @JsonManagedReference
-	 private List<TeamUser> teamUser;
+//	 @OneToMany(mappedBy = "teamMap", cascade = CascadeType.ALL)
+//	 @JsonManagedReference
+//	 private List<TeamUser> teamUser;
 
 	@Embedded
 	@AttributeOverrides({ @AttributeOverride(name = "isActive", column = @Column(name = "isActive")),
@@ -91,13 +91,13 @@ public class Team {
 		this.coverPhoto = coverPhoto;
 	}
 
-	public List<TournamentTeam> getListTournaments() {
-		return listTournaments;
-	}
-
-	public void setListTournaments(List<TournamentTeam> listTournaments) {
-		this.listTournaments = listTournaments;
-	}
+//	public List<TournamentTeam> getListTournaments() {
+//		return listTournaments;
+//	}
+//
+//	public void setListTournaments(List<TournamentTeam> listTournaments) {
+//		this.listTournaments = listTournaments;
+//	}
 
 //	public List<MatchInningTeam> getMatchInningTeam() {
 //		return listMatchInningTeam;
@@ -107,13 +107,13 @@ public class Team {
 //		this.listMatchInningTeam = matchInningTeam;
 //	}
 
-	 public List<TeamUser> getTeamUser() {
-	 return teamUser;
-	 }
-	
-	 public void setTeamUser(List<TeamUser> teamUser) {
-	 this.teamUser = teamUser;
-	 }
+//	 public List<TeamUser> getTeamUser() {
+//	 return teamUser;
+//	 }
+//	
+//	 public void setTeamUser(List<TeamUser> teamUser) {
+//	 this.teamUser = teamUser;
+//	 }
 
 	public CommonParametersEmbaddable getCommonParametersEmbaddable() {
 		return commonParametersEmbaddable;

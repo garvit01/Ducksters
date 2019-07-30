@@ -23,13 +23,10 @@ public class TournamentTeamServiceImpl implements TournamentTeamService {
 	}
 
 	@Override
-	public List<TournamentDetailsDTO> listTournamentByTeamId(int id) throws NoDataFoundException {
+	public List<TournamentDetailsDTO> listTournamentByTeamId(int id) {
 		List<TournamentDetailsDTO> listTournamentDetail = null;
 		listTournamentDetail = tournamentTeamRepo.getTournamentByTeamId(id);
-		if (listTournamentDetail.size() == 0)
-			throw new NoDataFoundException("This team didn't join any tournament till now");
-		else
-			return listTournamentDetail;
+		return listTournamentDetail;
 	}
 
 }

@@ -24,12 +24,12 @@ public class TeamServiceImpl implements TeamService {
 	}
 
 	@Override
-	public Team getByName(String name) throws NoDataFoundException {
-		Team team = teamRepo.findByName(name);
-		if (team == null)
+	public List<Team> getByName(String name) throws NoDataFoundException {
+		List<Team> listTeams = teamRepo.findByName(name);
+		if (listTeams.size() == 0)
 			throw new NoDataFoundException("No Data found");
 		else
-			return team;
+			return listTeams;
 	}
 
 	@Override
@@ -44,14 +44,15 @@ public class TeamServiceImpl implements TeamService {
 			return team;
 	}
 
-//	@Override
-//	public List<UserProfile> getTeamMembersById(int id) throws NoDataFoundException {
-//		List<UserProfile> listUsers = null;
-//		listUsers = teamRepo.findAllMembersByTeamId(id);
-//		if (listUsers.size() == 0)
-//			throw new NoDataFoundException("No member joined yet");
-//		else
-//			return listUsers;
-//	}
+	// @Override
+	// public List<UserProfile> getTeamMembersById(int id) throws
+	// NoDataFoundException {
+	// List<UserProfile> listUsers = null;
+	// listUsers = teamRepo.findAllMembersByTeamId(id);
+	// if (listUsers.size() == 0)
+	// throw new NoDataFoundException("No member joined yet");
+	// else
+	// return listUsers;
+	// }
 
 }

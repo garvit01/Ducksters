@@ -7,6 +7,6 @@ import com.atd.duckstersService.exception.NoDataFoundException;
 
 public interface TournamentTeamService {
 
-	public List<TournamentDetailsDTO> listTournamentByTeamId(int id) throws NoDataFoundException;
+	public List<TournamentDetailsDTO> listTournamentByTeamId(int id);
 
 }

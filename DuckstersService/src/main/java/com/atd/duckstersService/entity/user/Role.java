@@ -50,13 +50,13 @@ public class Role {
 			@AttributeOverride(name = "isVerified", column = @Column(name = "isVerified")) })
 	private CommonParametersEmbaddable commonParametersEmbaddable;
 
-	@OneToMany(mappedBy = "role", cascade = CascadeType.ALL)
-	@JsonManagedReference
-	Set<RoleFunction> roleFunctions;
-
-	@OneToMany(mappedBy = "role", cascade = CascadeType.ALL)
-	@JsonManagedReference
-	private List<UserRole> listUserRole;
+//	@OneToMany(mappedBy = "role", cascade = CascadeType.ALL)
+//	@JsonManagedReference
+//	Set<RoleFunction> roleFunctions;
+//
+//	@OneToMany(mappedBy = "role", cascade = CascadeType.ALL)
+//	@JsonManagedReference
+//	private List<UserRole> listUserRole;
 
 
 	public Role() {
@@ -64,32 +64,29 @@ public class Role {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Role(int id, String name, RoleType roleType, CommonParametersEmbaddable commonParametersEmbaddable,
-			Set<RoleFunction> roleFunctions, List<UserRole> listUserRole) {
+	public Role(int id, String name, RoleType roleType, CommonParametersEmbaddable commonParametersEmbaddable) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.roleType = roleType;
 		this.commonParametersEmbaddable = commonParametersEmbaddable;
-		this.roleFunctions = roleFunctions;
-		this.listUserRole = listUserRole;
 	}
 
-	public Set<RoleFunction> getRoleFunctions() {
-		return roleFunctions;
-	}
-
-	public void setRoleFunctions(Set<RoleFunction> roleFunctions) {
-		this.roleFunctions = roleFunctions;
-	}
-
-	public List<UserRole> getListUserRole() {
-		return listUserRole;
-	}
-
-	public void setListUserRole(List<UserRole> listUserRole) {
-		this.listUserRole = listUserRole;
-	}
+//	public Set<RoleFunction> getRoleFunctions() {
+//		return roleFunctions;
+//	}
+//
+//	public void setRoleFunctions(Set<RoleFunction> roleFunctions) {
+//		this.roleFunctions = roleFunctions;
+//	}
+//
+//	public List<UserRole> getListUserRole() {
+//		return listUserRole;
+//	}
+//
+//	public void setListUserRole(List<UserRole> listUserRole) {
+//		this.listUserRole = listUserRole;
+//	}
 
 	public int getId() {
 		return id;

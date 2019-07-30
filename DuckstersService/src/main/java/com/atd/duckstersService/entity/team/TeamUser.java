@@ -12,6 +12,7 @@ import org.hibernate.annotations.OnDeleteAction;
 
 import com.atd.duckstersService.entity.user.UserProfile;
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "teamusermap")
@@ -22,13 +23,11 @@ public class TeamUser {
 
 	@ManyToOne
 	@JoinColumn(name = "team_id", nullable = true)
-	@JsonBackReference
 	@OnDelete(action = OnDeleteAction.CASCADE)
 	private Team teamMap;
 
 	@ManyToOne
 	@JoinColumn(name = "user_id", nullable = true)
-	@JsonBackReference
 	@OnDelete(action = OnDeleteAction.CASCADE)
 	private UserProfile userMap;
 
@@ -52,6 +51,7 @@ public class TeamUser {
 		this.id = id;
 	}
 
+	@JsonIgnore
 	public Team getTeamMap() {
 		return teamMap;
 	}
@@ -60,6 +60,7 @@ public class TeamUser {
 		this.teamMap = teamMap;
 	}
 
+	@JsonIgnore
 	public UserProfile getUserMap() {
 		return userMap;
 	}
