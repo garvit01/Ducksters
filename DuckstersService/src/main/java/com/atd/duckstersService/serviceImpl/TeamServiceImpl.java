@@ -44,6 +44,11 @@ public class TeamServiceImpl implements TeamService {
 			return team;
 	}
 
+	@Override
+	public Team registerTeam(Team team) {
+		return teamRepo.save(team);
+	}
+
 	// @Override
 	// public List<UserProfile> getTeamMembersById(int id) throws
 	// NoDataFoundException {

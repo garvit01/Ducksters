@@ -12,5 +12,6 @@ public interface TeamService {
 
 	public Team getById(int id) throws NoDataFoundException;
 
+	public Team registerTeam(Team team);
 
 }

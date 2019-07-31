@@ -121,4 +121,17 @@ public class TeamController {
 		return responseEntity;
 
 	}
+
+	@RequestMapping(value = "/createTeam", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<?> createTeam(@RequestBody Team team) {
+		ResponseEntity<?> responseEntity = null;
+		try {
+			Team savedTeam = teamService.registerTeam(team);
+			responseEntity = new ResponseEntity<Team>(savedTeam, HttpStatus.OK);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			responseEntity = new ResponseEntity<String>(e.getMessage(), HttpStatus.CONFLICT);
+		}
+		return responseEntity;
+	}
 }
