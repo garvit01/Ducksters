@@ -21,6 +21,9 @@ public interface TeamUserRepo extends JpaRepository<TeamUser, Integer> {
 	@Query(nativeQuery = true, value = "select t.id,t.name,t.coverPhoto from team t join teamusermap tum on tum.team_id=t.id where tum.user_id=:userId group by t.id")
 	public List<TeamDetailsDTO> listAllTeamByUserId(@Param("userId") Integer userId);
 
-	public TeamUser findByUserMap(UserProfile userProfile);
+	@Query(nativeQuery = true, value = "select * from teamusermap where team_id=:team_id and user_id=:user_id")
+	public TeamUser isPlayerInTeam(@Param("team_id") Integer teamId, @Param("user_id") Integer userId);
+
+
 
 }

@@ -9,11 +9,14 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
@@ -21,13 +24,17 @@ import com.atd.duckstersService.entity.common.CommonParametersEmbaddable;
 import com.atd.duckstersService.entity.common.Scheme;
 import com.atd.duckstersService.entity.team.Team;
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
 public class Tournament {
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
 	@Column
@@ -62,23 +69,18 @@ public class Tournament {
 
 	@ManyToOne
 	@JoinColumn(name = "winner_team_id", nullable = true)
-	@JsonBackReference
 	@OnDelete(action = OnDeleteAction.CASCADE)
 	private Team tournamentWinnerTeam;
 
-	@ManyToOne
+	@ManyToOne(cascade = { CascadeType.MERGE })
 	@JoinColumn(name = "scheme_id", nullable = true)
-	@JsonBackReference
 	@OnDelete(action = OnDeleteAction.CASCADE)
+	@JsonBackReference
 	private Scheme scheme;
 
 	@OneToMany(mappedBy = "tournament", cascade = CascadeType.ALL)
-	@JsonManagedReference
+	@JsonManagedReference(value = "listtournamentTeams")
 	private List<TournamentTeam> listtournamentTeams;
-
-//	@OneToMany(mappedBy = "tournamentForAwards", cascade = CascadeType.ALL)
-//	@JsonManagedReference
-//	private List<TournamentAward> listtournamentAwards;
 
 	@Embedded
 	@AttributeOverrides({ @AttributeOverride(name = "isActive", column = @Column(name = "isActive")),
@@ -94,7 +96,8 @@ public class Tournament {
 
 	public Tournament(int id, String name, String description, String place, String status, Date startDate,
 			Date endDate, Date lastRegistrationDate, String venue, int minTeams, int maxTeams,
-			Team tournamentWinnerTeam, Scheme scheme, List<TournamentTeam> listtournamentTeams,CommonParametersEmbaddable commonParametersEmbaddable) {
+			Team tournamentWinnerTeam, Scheme scheme, List<TournamentTeam> listtournamentTeams,
+			CommonParametersEmbaddable commonParametersEmbaddable) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -201,7 +204,6 @@ public class Tournament {
 		this.maxTeams = maxTeams;
 	}
 
-	@JsonIgnore
 	public Team getWinningTeam() {
 		return tournamentWinnerTeam;
 	}
@@ -218,7 +220,6 @@ public class Tournament {
 		this.scheme = scheme;
 	}
 
-	@JsonIgnore
 	public List<TournamentTeam> getTournamentTeams() {
 		return listtournamentTeams;
 	}
@@ -233,6 +234,14 @@ public class Tournament {
 
 	public void setCommonParametersEmbaddable(CommonParametersEmbaddable commonParametersEmbaddable) {
 		this.commonParametersEmbaddable = commonParametersEmbaddable;
+	}
+
+	public Team getTournamentWinnerTeam() {
+		return tournamentWinnerTeam;
+	}
+
+	public void setTournamentWinnerTeam(Team tournamentWinnerTeam) {
+		this.tournamentWinnerTeam = tournamentWinnerTeam;
 	}
 
 }

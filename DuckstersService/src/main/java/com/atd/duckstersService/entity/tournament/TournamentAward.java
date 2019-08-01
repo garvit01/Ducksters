@@ -3,6 +3,8 @@ package com.atd.duckstersService.entity.tournament;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -18,12 +20,13 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 public class TournamentAward {
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 
 	@ManyToOne
 	@JoinColumn(name = "tournament_id", nullable = true)
-	@JsonBackReference
 	@OnDelete(action = OnDeleteAction.CASCADE)
+	@JsonBackReference(value="listtournamentAwards")
 	private Tournament tournamentForAwards;
 
 	@ManyToOne

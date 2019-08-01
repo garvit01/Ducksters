@@ -4,6 +4,8 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -13,23 +15,24 @@ import org.hibernate.annotations.OnDeleteAction;
 
 import com.atd.duckstersService.entity.team.Team;
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
 public class TournamentTeam {
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 
 	@ManyToOne
 	@JoinColumn(name = "tournament_id", nullable = false)
-	@JsonBackReference
-	@OnDelete(action = OnDeleteAction.CASCADE)
+	@OnDelete(action = OnDeleteAction.CASCADE)	
+	@JsonBackReference(value="listtournamentTeams")
 	private Tournament tournament;
 
 	@ManyToOne
 	@JoinColumn(name = "team_id", nullable = false)
-	@JsonBackReference
 	@OnDelete(action = OnDeleteAction.CASCADE)
 	private Team joinedTeams;
 
@@ -61,7 +64,7 @@ public class TournamentTeam {
 		this.id = id;
 	}
 
-	@JsonIgnore
+
 	public Tournament getTournament() {
 		return tournament;
 	}
@@ -86,7 +89,6 @@ public class TournamentTeam {
 		this.paymentSuccessful = paymentSuccessful;
 	}
 
-	@JsonIgnore
 	public Team getJoinedTeams() {
 		return joinedTeams;
 	}

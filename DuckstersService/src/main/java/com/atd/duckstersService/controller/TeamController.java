@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.assertj.core.util.Arrays;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.atd.duckstersService.DTO.TeamMembersDTO;
 import com.atd.duckstersService.DTO.TournamentDetailsDTO;
+import com.atd.duckstersService.DTO.UserAddTeam;
 import com.atd.duckstersService.entity.team.Team;
 import com.atd.duckstersService.entity.team.TeamUser;
 import com.atd.duckstersService.exception.AlreadyFoundException;
@@ -106,14 +108,17 @@ public class TeamController {
 
 	}
 
-	@RequestMapping(value = "/addPlayersToTeam", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<?> addPlayersToTeam(@RequestBody TeamUser teamUser) {
-		System.out.println("------------->>>>>>>>>>>>" + teamUser);
+	@RequestMapping(value = "/addPlayersToTeam/{teamId}", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<?> addPlayersToTeam(@PathVariable Integer teamId) {
+
+		System.out.println("-----------"+teamId );
+		List<Integer> listUserIds = new ArrayList<>();
+		listUserIds.add(1);
+
 		ResponseEntity<?> responseEntity = null;
 		try {
-			TeamUser addedUserToTeam = teamUserService.addMembersToTeam(teamUser);
-			System.out.println("------------->>>>>>>>>>>>" + addedUserToTeam);
-			responseEntity = new ResponseEntity<TeamUser>(addedUserToTeam, HttpStatus.OK);
+			List<TeamUser> addedUserToTeam = teamUserService.addPlayerToTeam(teamId, listUserIds);
+			responseEntity = new ResponseEntity<List<TeamUser>>(addedUserToTeam, HttpStatus.OK);
 		} catch (AlreadyFoundException e) {
 			// TODO Auto-generated catch block
 			responseEntity = new ResponseEntity<String>(e.getMessage(), HttpStatus.CONFLICT);

@@ -1,7 +1,8 @@
 package com.atd.duckstersService.entity.team;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -11,14 +12,15 @@ import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 import com.atd.duckstersService.entity.user.UserProfile;
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 @Entity
 @Table(name = "teamusermap")
 public class TeamUser {
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	int id;
 
 	@ManyToOne
@@ -67,6 +69,11 @@ public class TeamUser {
 
 	public void setUserMap(UserProfile userMap) {
 		this.userMap = userMap;
+	}
+
+	@Override
+	public String toString() {
+		return "TeamUser [id=" + id + ", teamMap=" + teamMap + ", userMap=" + userMap + "]";
 	}
 
 }

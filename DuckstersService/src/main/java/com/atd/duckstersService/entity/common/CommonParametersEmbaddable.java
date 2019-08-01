@@ -13,15 +13,11 @@ public class CommonParametersEmbaddable {
 	private Date createdAt;
 	private Date lastModified;
 	private Boolean isVerified;
-	
-	
 
 	public CommonParametersEmbaddable() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	
-	
 
 	public CommonParametersEmbaddable(boolean isActive, Date createdAt, Date lastModified, boolean isVerified) {
 		super();
@@ -32,8 +28,6 @@ public class CommonParametersEmbaddable {
 		this.lastModified = date;
 		this.isVerified = isVerified;
 	}
-
-
 
 	public boolean isActive() {
 		return isActive;
@@ -58,7 +52,6 @@ public class CommonParametersEmbaddable {
 	public void setLastModified(Date lastModified) {
 		this.lastModified = lastModified;
 	}
-	
 
 	public boolean isVerified() {
 		return isVerified;
@@ -68,7 +61,10 @@ public class CommonParametersEmbaddable {
 		this.isVerified = isVerified;
 	}
 
-
-	
+	@Override
+	public String toString() {
+		return "CommonParametersEmbaddable [isActive=" + isActive + ", createdAt=" + createdAt + ", lastModified="
+				+ lastModified + ", isVerified=" + isVerified + "]";
+	}
 
 }

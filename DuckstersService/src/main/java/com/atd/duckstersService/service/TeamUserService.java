@@ -13,6 +13,8 @@ public interface TeamUserService {
 
 	public List<TeamDetailsDTO> listTeamsByUserId(int id);
 
-	public TeamUser addMembersToTeam(TeamUser teamUser) throws AlreadyFoundException;
+	public boolean isPlayerInTeam(int teamId, int userId);
+
+	public List<TeamUser> addPlayerToTeam(int teamId, List<Integer> userIds) throws AlreadyFoundException;
 
 }

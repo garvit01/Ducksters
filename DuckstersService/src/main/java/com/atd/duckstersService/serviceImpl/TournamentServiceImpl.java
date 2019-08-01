@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.atd.duckstersService.entity.tournament.Tournament;
+import com.atd.duckstersService.exception.InvalidParameter;
 import com.atd.duckstersService.exception.NoDataFoundException;
 import com.atd.duckstersService.repository.TournamentRepo;
 import com.atd.duckstersService.service.TournamentService;
@@ -31,6 +32,20 @@ public class TournamentServiceImpl implements TournamentService {
 		else
 			return listLiveTournaments;
 
+	}
+
+	@Override
+	public Tournament registerTournament(Tournament tournament) throws InvalidParameter {
+		if (tournament.getMaxTeams() == 0)
+			throw new InvalidParameter("Max Team is missing");
+		else if (tournament.getStartDate() == null)
+			throw new InvalidParameter("Start date is missing");
+		else if (tournament.getLastRegistrationDate() == null)
+			throw new InvalidParameter("Last Registration Date is missing");
+		else if (tournament.getScheme() == null)
+			throw new InvalidParameter("Scheme is missing");
+		else
+			return tournamentRepo.save(tournament);
 	}
 
 }
