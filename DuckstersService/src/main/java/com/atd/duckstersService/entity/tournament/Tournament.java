@@ -236,6 +236,7 @@ public class Tournament {
 		this.commonParametersEmbaddable = commonParametersEmbaddable;
 	}
 
+
 	public Team getTournamentWinnerTeam() {
 		return tournamentWinnerTeam;
 	}
