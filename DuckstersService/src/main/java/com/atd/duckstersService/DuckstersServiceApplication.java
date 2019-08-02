@@ -1,13 +1,8 @@
 package com.atd.duckstersService;
 
-import javax.servlet.Filter;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.web.servlet.FilterRegistrationBean;
-import org.springframework.context.annotation.Bean;
-
-import com.atd.duckstersService.filter.JwtFilter;
 
 @SpringBootApplication(scanBasePackages={
 		"com.atd.duckstersService"}) 
