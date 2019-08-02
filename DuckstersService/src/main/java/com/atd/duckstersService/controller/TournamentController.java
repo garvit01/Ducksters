@@ -41,7 +41,6 @@ public class TournamentController {
 		ResponseEntity<?> responseEntity = null;
 		try {
 			List<Tournament> listLiveTournament = tournamentService.listLiveTournaments(status.toUpperCase());
-			System.out.println(listLiveTournament);
 			responseEntity = new ResponseEntity<List<Tournament>>(listLiveTournament, HttpStatus.OK);
 		} catch (NoDataFoundException e) {
 			// TODO Auto-generated catch block

@@ -36,6 +36,8 @@ public class Team {
 
 	@Column
 	private String coverPhoto;
+	@Column
+	private String teamId;
 
 //	@OneToMany(mappedBy = "joinedTeams", cascade = CascadeType.ALL)
 //	@JsonManagedReference
@@ -44,6 +46,7 @@ public class Team {
 //	@OneToMany(mappedBy = "team", cascade = CascadeType.ALL)
 //	@JsonManagedReference
 //	private List<MatchInningTeam> listMatchInningTeam;
+
 
 //	@OneToMany(mappedBy = "winnerTeam", cascade = CascadeType.ALL)
 //	@JsonManagedReference
