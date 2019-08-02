@@ -111,12 +111,12 @@ public class TeamController {
 	@RequestMapping(value = "/addPlayersToTeam/{teamId}", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<?> addPlayersToTeam(@PathVariable Integer teamId) {
 
-		System.out.println("-----------"+teamId );
 		List<Integer> listUserIds = new ArrayList<>();
 		listUserIds.add(1);
 
 		ResponseEntity<?> responseEntity = null;
 		try {
+			// one team id and list of players id
 			List<TeamUser> addedUserToTeam = teamUserService.addPlayerToTeam(teamId, listUserIds);
 			responseEntity = new ResponseEntity<List<TeamUser>>(addedUserToTeam, HttpStatus.OK);
 		} catch (AlreadyFoundException e) {

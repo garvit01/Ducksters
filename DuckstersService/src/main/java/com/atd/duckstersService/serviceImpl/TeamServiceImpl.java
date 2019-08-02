@@ -49,15 +49,5 @@ public class TeamServiceImpl implements TeamService {
 		return teamRepo.save(team);
 	}
 
-	// @Override
-	// public List<UserProfile> getTeamMembersById(int id) throws
-	// NoDataFoundException {
-	// List<UserProfile> listUsers = null;
-	// listUsers = teamRepo.findAllMembersByTeamId(id);
-	// if (listUsers.size() == 0)
-	// throw new NoDataFoundException("No member joined yet");
-	// else
-	// return listUsers;
-	// }
 
 }
