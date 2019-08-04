@@ -9,7 +9,9 @@ import com.atd.duckstersService.entity.tournament.Tournament;
 import com.atd.duckstersService.exception.NoDataFoundException;
 
 @Repository
-public interface TournamentRepo  extends JpaRepository<Tournament, Integer>{
+public interface TournamentRepo extends JpaRepository<Tournament, Integer> {
 
 	public List<Tournament> findByStatus(String status);
+
+	public List<Tournament> findByName(String name);
 }

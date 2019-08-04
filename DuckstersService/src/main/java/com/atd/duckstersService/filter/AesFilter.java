@@ -12,14 +12,19 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.filter.GenericFilterBean;
 
 import com.atd.duckstersService.config.CharResponseWrapper;
 import com.atd.duckstersService.config.SaltAES256;
+import com.atd.duckstersService.service.RequestLogService;
 import com.google.common.base.Charsets;
 import com.google.common.io.ByteStreams;
 
 public class AesFilter extends GenericFilterBean {
+
+	@Autowired
+	private RequestLogService requestService;
 
 	public void doFilter(final ServletRequest req, final ServletResponse res, final FilterChain chain)
 			throws IOException, ServletException {

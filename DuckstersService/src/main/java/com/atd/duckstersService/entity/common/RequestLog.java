@@ -2,14 +2,18 @@ package com.atd.duckstersService.entity.common;
 
 import java.util.Date;
 
+import javax.annotation.Generated;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
 public class RequestLog {
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int serialNo;
 
 	@Column
@@ -122,4 +126,4 @@ public class RequestLog {
 				+ ", response=" + response + "]";
 	}
 
-	}
+}

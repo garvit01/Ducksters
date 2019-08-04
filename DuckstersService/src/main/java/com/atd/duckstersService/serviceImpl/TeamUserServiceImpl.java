@@ -55,8 +55,10 @@ public class TeamUserServiceImpl implements TeamUserService {
 
 	@Override
 	public List<TeamUser> addPlayerToTeam(int teamId, List<Integer> userIds) throws AlreadyFoundException {
+		System.out.println("teamId " + teamId);
 		List<TeamUser> listSavedTeamUser = new ArrayList<TeamUser>();
 		for (int userId : userIds) {
+			System.out.println("userid " + userId);
 			TeamUser alreadySaved = teamUserRepo.isPlayerInTeam(teamId, userId);
 			if (alreadySaved != null) {
 				throw new AlreadyFoundException(userId + "Player is already in this team");

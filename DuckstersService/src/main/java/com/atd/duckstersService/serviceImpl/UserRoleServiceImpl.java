@@ -21,13 +21,9 @@ public class UserRoleServiceImpl implements UserRoleService {
 	}
 
 	@Override
-	public List<String> listRolesByUserId(int id) throws NoDataFoundException {
+	public List<String> listRolesByUserId(int id) {
 		List<String> listRoles = null;
-		listRoles = userRoleRepo.getRolesByUserId(id);
-		if (listRoles.size()==0) {
-			throw new NoDataFoundException("No Role defined for this user");
-		} else
-			return listRoles;
+		return userRoleRepo.getRolesByUserId(id);
 	}
 
 }

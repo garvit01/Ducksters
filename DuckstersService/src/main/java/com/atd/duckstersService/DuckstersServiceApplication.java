@@ -1,11 +1,16 @@
 package com.atd.duckstersService;
 
+import javax.servlet.Filter;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.web.servlet.FilterRegistrationBean;
+import org.springframework.context.annotation.Bean;
 
-@SpringBootApplication(scanBasePackages={
-		"com.atd.duckstersService"}) 
+import com.atd.duckstersService.filter.AesFilter;
+import com.atd.duckstersService.filter.JwtFilter;
+
+@SpringBootApplication(scanBasePackages = { "com.atd.duckstersService" })
 public class DuckstersServiceApplication {
 
 //	@Bean
@@ -16,7 +21,15 @@ public class DuckstersServiceApplication {
 //
 //		return registrationBean;
 //	}
-	
+
+	@Bean
+	public FilterRegistrationBean<Filter> aesFilter() {
+		final FilterRegistrationBean<Filter> registrationBean = new FilterRegistrationBean<>();
+		registrationBean.setFilter(new AesFilter());
+		registrationBean.addUrlPatterns("/api/*");
+
+		return registrationBean;
+	}
 
 	public static void main(String args[]) {
 		SpringApplication.run(DuckstersServiceApplication.class, args);

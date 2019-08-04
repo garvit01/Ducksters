@@ -48,4 +48,14 @@ public class TournamentServiceImpl implements TournamentService {
 			return tournamentRepo.save(tournament);
 	}
 
+	@Override
+	public List<Tournament> getTournamentByName(String name) throws NoDataFoundException {
+		List<Tournament> listTournament = null;
+		listTournament = tournamentRepo.findByName(name);
+		if (listTournament.size() == 0)
+			throw new NoDataFoundException("No Tournament Registered By This Name");
+		else
+			return listTournament;
+	}
+
 }
