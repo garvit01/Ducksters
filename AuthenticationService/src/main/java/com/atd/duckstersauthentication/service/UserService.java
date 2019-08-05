@@ -6,6 +6,6 @@ import com.atd.duckstersauthentication.model.User;
 
 public interface UserService {
 
-	boolean saveUser(User user) throws UserAlreadyExistsException;
+	User saveUser(User user) throws UserAlreadyExistsException;
 	public User findByUserIdAndPassword(String userId, String password) throws UserNotFoundException;
 }

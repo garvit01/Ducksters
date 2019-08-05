@@ -11,35 +11,34 @@ import com.atd.duckstersauthentication.model.User;
 import com.atd.duckstersauthentication.repository.UserRepository;
 
 @Service
-public class UserServiceImpl implements UserService{
-	
-	
+public class UserServiceImpl implements UserService {
+
 	private final UserRepository userRepository;
-	
+
 	@Autowired
 	public UserServiceImpl(UserRepository userRepository) {
 		super();
 		this.userRepository = userRepository;
-		
+
 	}
 
 	@Override
-	public boolean saveUser(User user) throws UserAlreadyExistsException {
-		
+	public User saveUser(User user) throws UserAlreadyExistsException {
+
 		Optional<User> fetchedUser = userRepository.findById(user.getUserId());
-		if(fetchedUser.isPresent()){
+		if (fetchedUser.isPresent()) {
 			throw new UserAlreadyExistsException("User with this ID  exists");
-			
+
 		}
-		userRepository.save(user);
-		return true;
+		User registeredUser = userRepository.save(user);
+		return registeredUser;
 	}
 
 	@Override
 	public User findByUserIdAndPassword(String userId, String password) throws UserNotFoundException {
-		
+
 		User user = userRepository.findByUserIdAndPassword(userId, password);
-		if(user == null){
+		if (user == null) {
 			throw new UserNotFoundException("User ID and password mismatch");
 		}
 		return user;
