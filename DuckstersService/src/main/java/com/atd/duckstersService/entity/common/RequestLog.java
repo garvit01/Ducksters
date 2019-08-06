@@ -28,13 +28,13 @@ public class RequestLog {
 	@Column
 	private String reqUrl;
 
-	@Column
+	@Column(length = 1024)
 	private String reqParam;
 
 	@Column
 	private Date reqTime;
 
-	@Column
+	@Column(length = 1024)
 	private String response;
 
 	public RequestLog() {

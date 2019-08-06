@@ -20,6 +20,8 @@ public class RequestLogServiceImpl implements RequestLogService {
 
 	@Override
 	public RequestLog save(RequestLog request) {
+
+		System.out.println("------------------>>>>>>>>>>>>>>" + request);
 		return requestRepo.save(request);
 	}
 
