@@ -15,15 +15,15 @@ import com.atd.duckstersService.service.RequestLogService;
 @SpringBootApplication(scanBasePackages = { "com.atd.duckstersService" })
 public class DuckstersServiceApplication {
 
-	// @Bean
-	// public FilterRegistrationBean<Filter> jwtFilter() {
-	// final FilterRegistrationBean<Filter> registrationBean = new
-	// FilterRegistrationBean<>();
-	// registrationBean.setFilter(new JwtFilter());
-	// registrationBean.addUrlPatterns("/api/*");
-	//
-	// return registrationBean;
-	// }
+	 @Bean
+	 public FilterRegistrationBean<Filter> jwtFilter() {
+	 final FilterRegistrationBean<Filter> registrationBean = new
+	 FilterRegistrationBean<>();
+	 registrationBean.setFilter(new JwtFilter());
+	 registrationBean.addUrlPatterns("/api/*");
+	
+	 return registrationBean;
+	 }
 
 	@Autowired
 	private RequestLogService requestLogService;
